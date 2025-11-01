@@ -7,8 +7,10 @@
 </head>
 <body>
   <button id="share">share</button>
+  <button id="share1">color</button>
   <script>
     let btn = document.querySelector('#share')
+    let btn1 = document.querySelector('#share1')
     btn.onclick = function() {
       if (navigator.share) {
         navigator.share({
@@ -16,8 +18,17 @@
           text: '快来看看',
           url: location.href,
         });
+      } else {
+        alert("不支持")
       }
     }
+
+
+    btn1.onclick = async function() {
+      const { sRGBHex } = await new EyeDropper().open();
+    }
+
+    navigator.wakeLock.request("screen").then((wakeLock) => {console.log("已获取唤醒锁定")}).catch((error) => {console.error("获取唤醒锁定失败:", error)});
   </script>
 </body>
 </html>
