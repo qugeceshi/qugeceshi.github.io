@@ -6,6 +6,18 @@
   <title>Document</title>
 </head>
 <body>
-  none
+  <button id="share">share</button>
+  <script>
+    let btn = document.querySelector('#share')
+    btn.onclick = function() {
+      if (navigator.share) {
+        navigator.share({
+          title: '我的新文章',
+          text: '快来看看',
+          url: location.href,
+        });
+      }
+    }
+  </script>
 </body>
 </html>
